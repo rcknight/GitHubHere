@@ -60,7 +60,7 @@ launchBrowser url = do
 			putStrLn "OS: MacOS"
 			system ("open " ++ u)
 #endif
-		putStrLn ("Launching " ++ u)
+			putStrLn ("Launching " ++ u)
 		Nothing -> putStrLn "No github remote found"
 
 main = do
