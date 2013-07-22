@@ -37,10 +37,10 @@ parseConfig configPath = do
 
 launchGithubForPath :: FilePath -> IO ()
 launchGithubForPath path = do
-						gitFolder <- findGitFolder path
-						case gitFolder of 
-							Just f  -> launchBrowser (githubUrl (joinPath [f, "config"]))
-							Nothing -> putStrLn "Current folder is not inside a git repository"
+	gitFolder <- findGitFolder path
+	case gitFolder of 
+		Just f  -> launchBrowser (githubUrl (joinPath [f, "config"]))
+		Nothing -> putStrLn "Current folder is not inside a git repository"
 
 --TODO .. change this to just take a string
 launchBrowser url = do 
