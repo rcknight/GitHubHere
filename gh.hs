@@ -45,7 +45,23 @@ launchBrowser url = do
 	toOpen <- url
 	case toOpen of
 		Just u ->  do 
+#if defined(mingw32_HOST_OS)
+			--windows
+			putStrLn "OS: Windows"
+			system ("start " ++ u)
+#elif defined(linux_HOST_OS)
+			--linux
+			putStrLn "OS: Linux"
+			system ("xdg-open " ++ u)
+#elsif defined(bsd_HOST_OS)
+			-- hopefully osx?
+			putStrLn "OS: BSD"
 			system ("open " ++ u)
+#else 
+			-- just hope chrome is here :)
+			putStrLn "OS: Something else"
+			system ("chrome " ++ u)
+#endif
 			putStrLn ("Launching " ++ u)
 		Nothing -> putStrLn "No github remote found"
 
