@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -cpp #-}
+
 import System.IO
 import System.Directory (doesDirectoryExist, getCurrentDirectory)
 import System.FilePath
@@ -53,16 +55,12 @@ launchBrowser url = do
 			--linux
 			putStrLn "OS: Linux"
 			system ("xdg-open " ++ u)
-#elsif defined(bsd_HOST_OS)
+#elif defined(darwin_HOST_OS)
 			-- hopefully osx?
-			putStrLn "OS: BSD"
+			putStrLn "OS: MacOS"
 			system ("open " ++ u)
-#else 
-			-- just hope chrome is here :)
-			putStrLn "OS: Something else"
-			system ("chrome " ++ u)
 #endif
-			putStrLn ("Launching " ++ u)
+		putStrLn ("Launching " ++ u)
 		Nothing -> putStrLn "No github remote found"
 
 main = do
